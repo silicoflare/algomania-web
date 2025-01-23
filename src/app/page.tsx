@@ -1,101 +1,143 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import FeatureCard from "@/components/FeatureCard";
+import InfoCard from "@/components/InfoCard";
+import Navbar from "@/components/Navbar";
+import { useEffect, useRef } from "react";
+import { Fade, Slide } from "react-awesome-reveal";
+
+export default function AlgoMania() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoPhoneRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 2.0;
+    }
+  }, []);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="flex flex-col w-screen h-screen items-center gap-3 bg-none z-0 font-body">
+      <Navbar />
+      <video
+        ref={videoRef}
+        src="/video.mp4"
+        className="w-full h-full object-cover -z-10 brightness-[.25] absolute top-0 left-0 hidden md:block"
+        controls={false}
+        autoPlay={true}
+        loop={true}
+        muted={true}
+      />
+      <video
+        ref={videoPhoneRef}
+        src="/video-phone.mp4"
+        className="w-full h-full object-cover -z-10 brightness-[.25] absolute top-0 left-0 block md:hidden"
+        controls={false}
+        autoPlay={true}
+        loop={true}
+        muted={true}
+      />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+      <div className="w-screen h-screen overflow-y-scroll scroll-snap-container snap-mandatory">
+        {/* Page 1 */}
+        <div className="w-screen h-screen flex flex-col items-center justify-center snap-start">
+          <h1 className="text-5xl md:text-8xl font-semibold font-algomania flex items-center gap-5">
+            <div className="text-orange-600">Algomania</div>
+            <div className="text-pink-600">2.0</div>
+          </h1>
+          <div className="font-body text-xl md:text-2xl mt-5 text-center">
+            The most awaited event of Encode AI is here!
+          </div>
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSe8twgZXulYD42nTFqoU_zARjbHxhiDQ5DA36oRzXqBaUamhQ/viewform"
             target="_blank"
-            rel="noopener noreferrer"
+            className="btn mt-10 text-3xl px-20 py-2"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
+            Register
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Page 2 */}
+        <div className="w-screen h-full min-h-screen py-10 px-5 md:p-20 bg-background flex flex-col items-center gap-2 snap-start">
+          <h1 className="text-4xl font-semibold font-heading bg-gradient-to-br from-purple-600 to-purple-900 text-transparent bg-clip-text mt-5">
+            Why Algomania?
+          </h1>
+          <div className="mt-5 md:mt-10 w-full md:w-4/5 h-full grid grid-rows-3 md:grid-cols-3 gap-5">
+            <Slide
+              direction="up"
+              cascade
+              triggerOnce
+              damping={0.75}
+              className="w-full h-full"
+            >
+              <FeatureCard title="Amazing Prize Pool">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
+                eos obcaecati architecto! Asperiores iure commodi facilis
+                ratione soluta nisi laudantium obcaecati, praesentium quam,
+                cumque nostrum ad quibusdam. Quidem, ut facere!
+              </FeatureCard>
+              <FeatureCard title="Hands-on CC Experience">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
+                eos obcaecati architecto! Asperiores iure commodi facilis
+                ratione soluta nisi laudantium obcaecati, praesentium quam,
+                cumque nostrum ad quibusdam. Quidem, ut facere!
+              </FeatureCard>
+              <FeatureCard title="Foodies and Goodies">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
+                eos obcaecati architecto! Asperiores iure commodi facilis
+                ratione soluta nisi laudantium obcaecati, praesentium quam,
+                cumque nostrum ad quibusdam. Quidem, ut facere!
+              </FeatureCard>
+            </Slide>
+          </div>
+        </div>
+
+        {/* Page 3 */}
+        <div className="w-screen h-screen py-10 px-5 md:p-20 bg-background flex flex-col items-center gap-2 snap-start">
+          <h1 className="text-4xl font-semibold font-heading text-orange-600">
+            FAQs
+          </h1>
+          <div className="w-full md:w-4/5 mt-5 md:mt-10 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10">
+            <Fade cascade triggerOnce damping={0.75}>
+              <InfoCard title="When?">
+                On **8th February, 2025**, from **9 AM to 6 PM**
+              </InfoCard>
+              <InfoCard title="Where?">
+                In the **13th floor study area** of **BE Block**
+              </InfoCard>
+              <InfoCard title="Is there a selection round?">
+                Yes. Around **32 to 35 teams** will qualify the selection round
+                to go to the finals.
+              </InfoCard>
+              <InfoCard title="What is the fee?">
+                A fee of **₹200 per head** has to be paid by qualifying teams in
+                the finals venue.
+              </InfoCard>
+              <InfoCard title="What kinds of questions will be asked?">
+                They look like **competitive-coding problems** like the ones
+                from LeetCode or CodeChef. These websites can get you prepped.
+              </InfoCard>
+              <InfoCard title="Why should I attend this event?">
+                Competitive coding events get you prepared for the DSA (Data
+                Structures and Algorithms) rounds of job recruitments.
+              </InfoCard>
+            </Fade>
+          </div>
+        </div>
+
+        <div className="w-screen h-screen p-20 bg-transparent flex flex-col items-center justify-center gap-2 snap-start">
+          <div className="font-heading font-semibold text-6xl gradient-text py-2">
+            Are you ready to take up the challenge?
+          </div>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSe8twgZXulYD42nTFqoU_zARjbHxhiDQ5DA36oRzXqBaUamhQ/viewform"
+            target="_blank"
+            className="btn mt-10 text-3xl px-20 py-2"
+          >
+            Register
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
