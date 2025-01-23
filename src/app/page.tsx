@@ -16,6 +16,9 @@ export default function AlgoMania() {
     if (videoRef.current) {
       videoRef.current.playbackRate = 2.0;
     }
+    if (videoPhoneRef.current) {
+      videoPhoneRef.current.playbackRate = 2.0;
+    }
   }, []);
 
   return (
