@@ -5,6 +5,8 @@ import InfoCard from "@/components/InfoCard";
 import Navbar from "@/components/Navbar";
 import { useEffect, useRef } from "react";
 import { Fade, Slide } from "react-awesome-reveal";
+import questions from "./questions";
+import Markdown from "react-markdown";
 
 export default function AlgoMania() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -41,11 +43,11 @@ export default function AlgoMania() {
       <div className="w-screen h-screen overflow-y-scroll scroll-snap-container snap-mandatory">
         {/* Page 1 */}
         <div className="w-screen h-screen flex flex-col items-center justify-center snap-start">
-          <h1 className="text-5xl md:text-8xl font-semibold font-algomania flex items-center gap-5">
+          <h1 className="text-4xl md:text-8xl font-semibold font-algomania flex items-center gap-5">
             <div className="text-orange-600">Algomania</div>
             <div className="text-pink-600">2.0</div>
           </h1>
-          <div className="font-body text-xl md:text-2xl mt-5 text-center">
+          <div className="font-body text-lg md:text-2xl mt-5 text-center">
             The most awaited event of Encode AI is here!
           </div>
           <a
@@ -59,7 +61,7 @@ export default function AlgoMania() {
 
         {/* Page 2 */}
         <div className="w-screen h-full min-h-screen py-10 px-5 md:p-20 bg-background flex flex-col items-center gap-2 snap-start">
-          <h1 className="text-4xl font-semibold font-heading bg-gradient-to-br from-purple-600 to-purple-900 text-transparent bg-clip-text mt-5">
+          <h1 className="text-4xl font-semibold font-heading bg-gradient-to-br from-purple-600 to-purple-900 text-transparent bg-clip-text md:mt-5">
             Why Algomania?
           </h1>
           <div className="mt-5 md:mt-10 w-full md:w-4/5 h-full grid grid-rows-3 md:grid-cols-3 gap-5">
@@ -71,22 +73,16 @@ export default function AlgoMania() {
               className="w-full h-full"
             >
               <FeatureCard title="Amazing Prize Pool">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
-                eos obcaecati architecto! Asperiores iure commodi facilis
-                ratione soluta nisi laudantium obcaecati, praesentium quam,
-                cumque nostrum ad quibusdam. Quidem, ut facere!
+                Prize pool of worth ₹21,000 to be won, along with prizes for the
+                best performing teams.
               </FeatureCard>
               <FeatureCard title="Hands-on CC Experience">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
-                eos obcaecati architecto! Asperiores iure commodi facilis
-                ratione soluta nisi laudantium obcaecati, praesentium quam,
-                cumque nostrum ad quibusdam. Quidem, ut facere!
+                First-hand experience of competitive coding, to prepare you for
+                job placements.
               </FeatureCard>
               <FeatureCard title="Foodies and Goodies">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
-                eos obcaecati architecto! Asperiores iure commodi facilis
-                ratione soluta nisi laudantium obcaecati, praesentium quam,
-                cumque nostrum ad quibusdam. Quidem, ut facere!
+                Lots of food, and goodies like stickers, stationery and much
+                more!
               </FeatureCard>
             </Slide>
           </div>
@@ -97,30 +93,25 @@ export default function AlgoMania() {
           <h1 className="text-4xl font-semibold font-heading text-orange-600">
             FAQs
           </h1>
-          <div className="w-full md:w-4/5 mt-5 md:mt-10 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10">
+          <div className="w-4/5 mt-10 hidden md:grid grid-cols-2 gap-10">
             <Fade cascade triggerOnce damping={0.75}>
-              <InfoCard title="When?">
-                On **8th February, 2025**, from **9 AM to 6 PM**
-              </InfoCard>
-              <InfoCard title="Where?">
-                In the **13th floor study area** of **BE Block**
-              </InfoCard>
-              <InfoCard title="Is there a selection round?">
-                Yes. Around **32 to 35 teams** will qualify the selection round
-                to go to the finals.
-              </InfoCard>
-              <InfoCard title="What is the fee?">
-                A fee of **₹200 per head** has to be paid by qualifying teams in
-                the finals venue.
-              </InfoCard>
-              <InfoCard title="What kinds of questions will be asked?">
-                They look like **competitive-coding problems** like the ones
-                from LeetCode or CodeChef. These websites can get you prepped.
-              </InfoCard>
-              <InfoCard title="Why should I attend this event?">
-                Competitive coding events get you prepared for the DSA (Data
-                Structures and Algorithms) rounds of job recruitments.
-              </InfoCard>
+              {questions.map(({ question, answer }, i) => (
+                <InfoCard key={i} title={question}>
+                  {answer}
+                </InfoCard>
+              ))}
+            </Fade>
+          </div>
+          <div className="w-full md:hidden flex flex-col items-center gap-3">
+            <Fade cascade triggerOnce damping={0.75}>
+              {questions.map(({ question, answer }, i) => (
+                <div key={i} className="flex flex-col justify-center gap-2">
+                  <span className="font-semibold text-orange-600 font-heading text-xl">
+                    {question}
+                  </span>
+                  <Markdown>{answer}</Markdown>
+                </div>
+              ))}
             </Fade>
           </div>
         </div>
