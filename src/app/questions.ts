@@ -1,7 +1,7 @@
 const questions: { question: string; answer: string }[] = [
   {
     question: "When?",
-    answer: "On **8th February, 2025**, from **9 AM to 6 PM**.",
+    answer: "On **15th March, 2025**, from **8 AM to 6 PM**.",
   },
   {
     question: "Where?",
